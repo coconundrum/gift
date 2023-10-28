@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Input Site</title>
+    <title>Word Puzzle</title>
+    <style>
+        #warning {
+            color: red;
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Type a Word!</h1>
-    <input type="text" placeholder="Write your word here">
+
+    <h1>Type the Secret Word!</h1>
+
+    <input type="text" maxlength="8" id="wordInput" placeholder="Enter 8 letters">
+    <button onclick="checkWord()">Enter</button>
+
+    <p id="warning"></p>
+
+    <script>
+        let attempts = 3;
+
+        function checkWord() {
+            const input = document.getElementById("wordInput").value.toUpperCase();
+            const warning = document.getElementById("warning");
+
+            if (input === "COCOLISO") {
+                window.location.href = "https://t.ly/Coco";
+            } else {
+                attempts--;
+                if (attempts > 0) {
+                    warning.textContent = "Wrong word! You have " + attempts + " more attempt(s) before the gift self-destructs.";
+                    warning.style.display = "block";
+                } else {
+                    warning.textContent = "The gift has self-destructed!";
+                    warning.style.display = "block";
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>
